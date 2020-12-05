@@ -1,0 +1,30 @@
+{
+  "name": "myblog",
+  "version": "1.0.0",
+  "description": "This is my first blog. This has been created using the MERN Stack Technologies.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "MERN",
+    "Stack",
+    "React",
+    "Blog",
+    "Redux",
+    "Mongodb",
+    "Blog",
+    "ExpressJS",
+    "NodeJs",
+    "React",
+    "Blog",
+    "Sai",
+    "Lakshmy"
+  ],
+  "author": "Sai Lakshmy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.4.20"
+  }
+}
