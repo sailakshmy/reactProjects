@@ -3,11 +3,14 @@ const mongoose = require('mongoose'); //Step-16:- Import the mongoose package
 const bodyParser = require('body-parser'); //Step-37:- Import the body-parser
 const cookieParser = require('cookie-parser');//Step-38:- Import the cookie-parser
 const {User} = require('./models/user');//Step-43:- Import the user model
+const config = require('./config/keys');//Step-56:- Import the keys module.
+
 const app = express(); //Step-7:- Create an express server
 
 
 mongoose.connect( //Step-17:- Connect the application to the MongoDb cluster
-    'mongodb+srv://Groot:IAmGroot@myblog.ujmww.mongodb.net/<dbname>?retryWrites=true&w=majority',
+    //'mongodb+srv://Groot:IAmGroot@myblog.ujmww.mongodb.net/<dbname>?retryWrites=true&w=majority', //Commented as a part of Step-54
+    config.mongoURI, //Step-57:- This will allow us to access the mongoURI that will be exported from the required module based on the environment.
 {useNewUrlParser:true} //This will resolve the depracation warning that Mongoose might throw
 ).then(()=>console.log('DB connected successfully')) //Step-18:- To cehck if the DB has connected successfully
 .catch(err =>console.log(`DB connection failed due to ${err}`)); //Step-18:- To catch the error if the DB connection failed.
