@@ -4,7 +4,8 @@
   "description": "This is my first blog. This has been created using the MERN Stack Technologies.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start":"node index.js",
+    "backend":"nodemon index.js"
   },
   "keywords": [
     "MERN",
@@ -24,7 +25,12 @@
   "author": "Sai Lakshmy",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
     "express": "^4.17.1",
     "mongoose": "^5.4.20"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
