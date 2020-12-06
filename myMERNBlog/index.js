@@ -4,6 +4,7 @@ const bodyParser = require('body-parser'); //Step-37:- Import the body-parser
 const cookieParser = require('cookie-parser');//Step-38:- Import the cookie-parser
 const {User} = require('./models/user');//Step-43:- Import the user model
 const config = require('./config/keys');//Step-56:- Import the keys module.
+const {auth} = require('./middleware/auth');//Step-87:- To import the auth module.
 
 const app = express(); //Step-7:- Create an express server
 
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({extended:true})); //Step-40:- Enables to use body
 app.use(bodyParser.json());//Step-40:- Enables to use bodyParser as a middleware and to be able to read the json
 app.use(cookieParser());//Step-40:- Enables to use cookieParser as a middleware
 
+
 //This router is to handle the register function where new users sign up.
 app.post('/api/users/register',(req,res)=>{//Step-42:- To handle the register request coming from the client and to update the details of the new user in the MongoDB
     const user = new User(req.body);//Step-44:- Create a new instance of user model so that the same can be saved.
@@ -36,7 +38,7 @@ app.post('/api/users/register',(req,res)=>{//Step-42:- To handle the register re
    
 });
 
-//This router is to handle the sign in dunction when the users are trying to signin.
+//This router is to handle the sign in function when the users are trying to signin.
 app.post('/api/users/login',(req,res)=>{//Step-66:- To handle the Signin requests coming from the client
    
     //Find the email keyed in by the user
@@ -62,6 +64,19 @@ app.post('/api/users/login',(req,res)=>{//Step-66:- To handle the Signin request
 
         });
     });
+
+});
+
+//This router is to handle the authentication action based on the token
+app.get('/api/users/auth',auth,(req,res)=>{//Step-76:- To authenticate the users //Step-88:- Adding the auth middleware
+    res.status(200)
+       .json({isAuth:true,
+              _id:req._id,
+              name:req.user.name,
+              lastname:req.user.lastname,
+              email:req.user.email,
+              role:req.user.role
+        });
 
 });
 

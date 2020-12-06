@@ -71,6 +71,19 @@ userSchema.methods.generateToken = function(cb){//Step-71:- Create a function ge
 
 }
 
+userSchema.statics.findByToken=function(token,cb){//Step-82:- Create a function findByToken in the schema to find the user by the token
+    var user = this;//Step-83:- this will reference the userSchema
+    jwt.verify(token,'secret',function(err, decodedToken){//Step-84:- use the verify method of the jwt object to check if the tokens are the same as in the DB
+        User.findOne({"_id":decodedToken, //This will search the DB for the record that satisfies both these search conditions.
+                    "token":token},function(err,user){
+                        if(err)
+                            return cb(err);
+                        return cb(null,user);
+                    });
+
+    })
+}
+
 const User = mongoose.model('User',userSchema); //Step-24:- Create the User model
 
 module.exports = {User}; //Step-25:- Export the User model
