@@ -80,4 +80,14 @@ app.get('/api/users/auth',auth,(req,res)=>{//Step-76:- To authenticate the users
 
 });
 
+//This router handles the logout action by clearing the token
+app.get('/api/users/logout',auth,(req,res)=>{//Step-90:- To log out the users 
+    User.findOneAndUpdate({_id:req.user._id},{token:""},(err,user)=>{//Step-91:- To find the currently logged in user and log them out by updating the token to an empty string
+        if(err)
+            return res.json({success:false,err});
+        return res.status(200).send({success:true});
+
+    });
+});
+
 app.listen(5000); //Step-8:- Make the application listen to this port. This is what starts the server.
