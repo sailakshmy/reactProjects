@@ -90,4 +90,7 @@ app.get('/api/users/logout',auth,(req,res)=>{//Step-90:- To log out the users
     });
 });
 
-app.listen(5000); //Step-8:- Make the application listen to this port. This is what starts the server.
+const port = process.env.PORT|| 5000;//Step-102:- To accomodate both Production and development environments
+app.listen(port,()=>{
+    console.log(`Server is running on port ${port}`);
+}); //Step-8:- Make the application listen to this port. This is what starts the server. //Step-102:- To accomodate both Production and Development servers
